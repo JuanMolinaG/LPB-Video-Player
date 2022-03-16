@@ -11,6 +11,8 @@ const App = () => {
     togglePlay,
     handleOnTimeUpdate,
     handleVideoProgress,
+    handleVideoSpeed,
+    toggleMute,
   } = useVideoPlayer(videoElement);
 
   return (
@@ -40,13 +42,15 @@ const App = () => {
           />
           <select
             className="velocity"
+            value={playerState.speed}
+            onChange={(e) => handleVideoSpeed(e)}
           >
             <option value="0.50">0.50x</option>
             <option value="1">1x</option>
             <option value="1.5">1.5x</option>
             <option value="2">2x</option>
           </select>
-          <button className="mute-btn">
+          <button className="mute-btn" onClick={toggleMute}>
             {!playerState.isMuted ? (
               <i className="bx bxs-volume-full"></i>
             ) : (

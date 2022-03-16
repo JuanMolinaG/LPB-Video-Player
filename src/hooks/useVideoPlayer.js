@@ -46,12 +46,32 @@ const useVideoPlayer = (videoElement) => {
       progress: manualChange,
     });
   };
+
+  const handleVideoSpeed = (event) => {
+    const speed = Number(event.target.value);
+    videoElement.current.playbackRate = speed;
+    setPlayerState({
+      ...playerState,
+      speed,
+    });
+  };
+
+  const toggleMute = () => {
+    const isMuted = !playerState.isMuted;
+    videoElement.current.muted = isMuted;
+    setPlayerState({
+      ...playerState,
+      isMuted: isMuted,
+    });
+  };
   
   return {
     playerState,
     togglePlay,
     handleOnTimeUpdate,
     handleVideoProgress,
+    handleVideoSpeed,
+    toggleMute,
   };
 };
 
