@@ -20,10 +20,38 @@ const useVideoPlayer = (videoElement) => {
       isPlaying: !playerState.isPlaying,
     });
   };
+
+  const handleOnTimeUpdate = () => {
+    const progress = (videoElement.current.currentTime / videoElement.current.duration) * 100;
+
+    if (progress === 100) {
+      setPlayerState({
+        ...playerState,
+        isPlaying: false,
+        progress: 0,
+      });
+    } else {
+      setPlayerState({
+        ...playerState,
+        progress,
+      });
+    }
+  };
+
+  const handleVideoProgress = (event) => {
+    const manualChange = Number(event.target.value);
+    videoElement.current.currentTime = (videoElement.current.duration / 100) * manualChange;
+    setPlayerState({
+      ...playerState,
+      progress: manualChange,
+    });
+  };
   
   return {
     playerState,
-    togglePlay
+    togglePlay,
+    handleOnTimeUpdate,
+    handleVideoProgress,
   };
 };
 

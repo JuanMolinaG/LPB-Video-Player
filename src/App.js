@@ -6,7 +6,12 @@ import useVideoPlayer from './hooks/useVideoPlayer';
 
 const App = () => {
   const videoElement = useRef(null);
-  const {playerState, togglePlay} = useVideoPlayer(videoElement);
+  const {
+    playerState,
+    togglePlay,
+    handleOnTimeUpdate,
+    handleVideoProgress,
+  } = useVideoPlayer(videoElement);
 
   return (
     <div className="container">
@@ -14,6 +19,7 @@ const App = () => {
         <video
           src={video}
           ref={videoElement}
+          onTimeUpdate={handleOnTimeUpdate}
         />
         <div className="controls">
           <div className="actions">
@@ -29,6 +35,8 @@ const App = () => {
             type="range"
             min="0"
             max="100"
+            value={playerState.progress}
+            onChange={(e) => handleVideoProgress(e)}
           />
           <select
             className="velocity"
