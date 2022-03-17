@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import './App.css';
-import VideoPlayerControls from './components/VideoPlayerControls'
+import VideoPlayerControls from './components/VideoPlayerControls/VideoPlayerControls'
 
 import video from "./assets/video.mp4";
 import useVideoPlayer from './hooks/useVideoPlayer';

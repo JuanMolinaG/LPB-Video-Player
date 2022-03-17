@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -20,27 +23,22 @@ video {
   width: 100%;
 }
 .controls {
-  display: flex;
-  align-items: center;
   position: absolute;
   bottom: 0;
   width: 100%;
-  flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  opacity: 0;
   transition: all 0.3s ease-in-out;
 }
-button {
+.actions {
+  display: flex;
+}
+.actions button {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50px;
-}
-.actions button {
   background: none;
   border: none;
   outline: none;
@@ -52,10 +50,11 @@ button {
   font-size: 30px;
 }
 input[type="range"] {
+  display: block;
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
   height: 4px;
-  flex-grow: 1;
+  width: 100%;
+  margin: 0;
 }
 input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
@@ -73,16 +72,9 @@ input[type="range"]::-moz-range-progress {
   text-align: center;
   font-size: 16px;
   width: 50px;
-  margin-left: 10px;
   cursor: pointer;
 }
-.mute-btn {
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-.mute-btn i {
+.actions .mute-btn i {
   background-color: none;
   color: white;
   font-size: 20px;
