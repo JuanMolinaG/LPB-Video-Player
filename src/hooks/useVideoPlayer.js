@@ -39,7 +39,6 @@ const useVideoPlayer = (videoElement) => {
   };
 
   const handleVideoProgress = (event, progressBarElement) => {
-    const progressBar = document.querySelector('.progress-bar');
     const progressTime = (event.nativeEvent.offsetX / progressBarElement.current.offsetWidth) * videoElement.current.duration;
     videoElement.current.currentTime = progressTime;
   };
