@@ -1,5 +1,10 @@
 const hotspotsList = [
   {
+    id: 0, // This will not be rendered
+    time: -2,
+    text: 'Elit feugiat nisi magna praesent habitant ut, ridiculus id vulputate auctor dictum.'
+  },
+  {
     id: 1,
     time: 2,
     text: 'Lorem ipsum dolor sit amet consectetur adipiscing, elit feugiat nisi magna praesent habitant ut, ridiculus id vulputate auctor dictum.'

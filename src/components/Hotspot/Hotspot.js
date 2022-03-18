@@ -3,7 +3,7 @@ import HotSpotCard from '../HotspotCard/HotSpotCard';
 import HotspotMarker from '../HotspotMarker/HotspotMarker';
 
 const Hotspot = ({time, text, videoElement}) => {
-  if (time > videoElement.current.duration) return null;
+  if (time < 0 || time > videoElement.current.duration) return null;
 
   return (
     <div className="hotspot">
