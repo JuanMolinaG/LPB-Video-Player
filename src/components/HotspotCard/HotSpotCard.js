@@ -5,7 +5,7 @@ import './HotspotCard.css';
 const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
   const [imgSrc, setImgSrc] = useState('');
 
-  const leftPosition = (time /videoDuration) * 100;
+  const leftPosition = Math.round((time /videoDuration) * 100);
 
   useEffect(() => {
     const video = document.createElement('video');
@@ -28,7 +28,7 @@ const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
   return (
     <div
       className={leftPosition < 66 ? 'hotspot-card left' : 'hotspot-card right'}
-      style={leftPosition < 66 ? {left: leftPosition + '%' } : {right: 100 - leftPosition + '%' }}
+      style={leftPosition < 66 ? {left: `calc(${leftPosition}% - 9px)` } : {right: `calc(${100 - leftPosition}% - 9px)` }}
     >
       <img className="hotspot-card__thumbnail" src={imgSrc} alt="Hotspot thumbnail" />
       <p>{text}</p>
@@ -36,4 +36,4 @@ const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
   )
 }
 
-export default HotSpotCard
+export default HotSpotCard;

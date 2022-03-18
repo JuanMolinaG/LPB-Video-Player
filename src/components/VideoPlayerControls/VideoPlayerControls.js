@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import useVideoPlayer from '../../hooks/useVideoPlayer';
+import './VideoPlayerControls.css';
 
 const VideoPlayerControls = ({videoElement, progress}) => {
   const {
@@ -11,6 +12,7 @@ const VideoPlayerControls = ({videoElement, progress}) => {
     toggleMute,
   } = useVideoPlayer(videoElement);
 
+  const progressBarElement = useRef(null)
   useEffect(() => {
     if (progress > 99) {
       togglePlay();
@@ -19,14 +21,16 @@ const VideoPlayerControls = ({videoElement, progress}) => {
 
   return (
     <div className="controls">
-      <input
-        type="range"
-        min="0"
-        max="100"
-        step="0.01"
-        value={progress}
-        onChange={(e) => handleVideoProgress(e)}
-      />
+      <div
+        className="progress-bar"
+        onClick={(e) => handleVideoProgress(e, progressBarElement)}
+        ref={progressBarElement}
+      >
+        <div
+          className="progress-bar__filled"
+          style={{width: progress + '%'}}
+        ></div>
+      </div>
       <div className="actions">
         <button onClick={togglePlay}>
           {!playerState.isPlaying ? (
@@ -57,4 +61,4 @@ const VideoPlayerControls = ({videoElement, progress}) => {
   )
 }
 
-export default VideoPlayerControls
+export default VideoPlayerControls;

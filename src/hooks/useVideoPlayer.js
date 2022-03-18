@@ -38,13 +38,10 @@ const useVideoPlayer = (videoElement) => {
     }
   };
 
-  const handleVideoProgress = (event) => {
-    const manualChange = Number(event.target.value);
-    videoElement.current.currentTime = (videoElement.current.duration / 100) * manualChange;
-    setPlayerState({
-      ...playerState,
-      progress: manualChange,
-    });
+  const handleVideoProgress = (event, progressBarElement) => {
+    const progressBar = document.querySelector('.progress-bar');
+    const progressTime = (event.nativeEvent.offsetX / progressBarElement.current.offsetWidth) * videoElement.current.duration;
+    videoElement.current.currentTime = progressTime;
   };
 
   const handleVideoSpeed = (event) => {

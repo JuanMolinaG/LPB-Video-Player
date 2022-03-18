@@ -1,0 +1,56 @@
+.controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+.actions {
+  display: flex;
+}
+.actions button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.actions button i {
+  background-color: none;
+  color: white;
+  font-size: 30px;
+}
+.progress-bar {
+  display: flex;
+  width: 100%;
+  height: 5px;
+  background: rgba(0,0,0,0.6);
+  cursor: pointer;
+}
+.progress-bar__filled {
+  background: red;
+  width: 0;
+  transition: width 0.3s linear;
+}
+.velocity {
+  appearance: none;
+  background: none;
+  color: white;
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  width: 50px;
+  cursor: pointer;
+}
+.actions .mute-btn i {
+  background-color: none;
+  color: white;
+  font-size: 20px;
+}
