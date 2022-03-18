@@ -10,6 +10,7 @@
   cursor: pointer;
   transform: translateX(-50%);
   opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 .hotspot-marker:hover ~ .hotspot-card {
   opacity: 1;

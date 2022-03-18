@@ -28,10 +28,10 @@ const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
   return (
     <div
       className={leftPosition < 66 ? 'hotspot-card left' : 'hotspot-card right'}
-      style={leftPosition < 66 ? {left: `calc(${leftPosition}% - 9px)` } : {right: `calc(${100 - leftPosition}% - 9px)` }}
+      style={leftPosition < 66 ? {left: `calc(${leftPosition}% - 10px)` } : {right: `calc(${100 - leftPosition}% - 10px)` }}
     >
       <img className="hotspot-card__thumbnail" src={imgSrc} alt="Hotspot thumbnail" />
-      <p>{text}</p>
+      <p className="hotspot-card__text">{text}</p>
     </div>
   )
 }

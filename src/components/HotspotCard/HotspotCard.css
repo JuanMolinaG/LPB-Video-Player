@@ -1,14 +1,12 @@
 .hotspot-card {
   position: absolute;
+  display: flex;
+  flex-wrap: wrap;
   bottom: 55px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   max-width: 33%;
   opacity: 0;
-  transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in-out;
 }
 .hotspot-card.left {
   border-radius: 10px 10px 10px 0;
@@ -25,15 +23,31 @@
   border-style: solid;
   border-width: 10px 10px 0 10px;
   border-color: rgba(255,255,255,0.4) transparent transparent transparent;
-  filter: blur(0.7px);
 }
 .hotspot-card.left::before {
-  left: -2px;
+  left: -1px;
 }
 .hotspot-card.right::before {
-  right: -2px;
+  right: -1px;
 }
 .hotspot-card__thumbnail {
   max-width: 100%;
-  border-radius: 5px;
+  border-radius: 10px 10px 0 0;
+}
+.hotspot-card__text {
+  padding: 10px;
+  margin: 0;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+}
+.hotspot-card.left .hotspot-card__text {
+  border-radius: 0 0 10px 0;
+}
+.hotspot-card.right .hotspot-card__text {
+  border-radius: 0 0 0 10px;
 }
