@@ -8,4 +8,8 @@
   position: absolute;
   bottom: 28px;
   cursor: pointer;
+  opacity: 0;
+}
+.hotspot-marker:hover ~ .hotspot-card {
+  opacity: 1;
 }

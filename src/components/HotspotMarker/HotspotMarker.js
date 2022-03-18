@@ -3,14 +3,7 @@ import React from 'react';
 import './HotspotMarker.css';
 
 const HotspotMarker = ({time, videoElement}) => {
-  const videoDuration = videoElement.current.duration
-  let leftPosition;
-
-  if (time <= videoDuration) {
-    leftPosition = (time / videoDuration) * 100;
-  } else {
-    leftPosition = '100';
-  }
+  const leftPosition = Math.round((time / videoElement.current.duration) * 100);
 
   const handleClick = () => {
     videoElement.current.currentTime = time;
