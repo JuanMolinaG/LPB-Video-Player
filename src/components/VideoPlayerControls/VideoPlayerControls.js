@@ -14,7 +14,10 @@ const VideoPlayerControls = ({videoElement, progress}) => {
     handleVideoSpeed,
     toggleMute,
     timeElapsed,
-    duration
+    duration,
+    isFullscreen,
+    toggleFullscreen,
+    togglePiP
   } = useVideoPlayerControls(videoElement);
 
   useEffect(() => {
@@ -45,9 +48,9 @@ const VideoPlayerControls = ({videoElement, progress}) => {
         </button>
         <button className="mute-btn" onClick={toggleMute}>
           {!isMuted ? (
-            <i className="bx bxs-volume-full"></i>
+            <i className="bx bx-volume-full"></i>
           ) : (
-            <i className="bx bxs-volume-mute"></i>
+            <i className="bx bx-volume-mute"></i>
           )}
         </button>
         <div className="time">
@@ -55,6 +58,8 @@ const VideoPlayerControls = ({videoElement, progress}) => {
           <span> / </span>
           <time className="duration">{duration}</time>
         </div>
+      </div>
+      <div className="view">
         <select
           className="velocity"
           value={speed}
@@ -65,6 +70,24 @@ const VideoPlayerControls = ({videoElement, progress}) => {
           <option value="1.5">1.5x</option>
           <option value="2">2x</option>
         </select>
+        {('pictureInPictureEnabled' in document) && (
+          <button
+            className="fullscreen-btn"
+            onClick={togglePiP}
+          >
+            <i className='bx bx-windows bx-flip-horizontal' ></i>
+          </button>
+        )}
+        <button
+          className="fullscreen-btn"
+          onClick={toggleFullscreen}
+        >
+          {(!isFullscreen) ? (
+            <i className='bx bx-fullscreen'></i>
+          ) : (
+            <i className='bx bx-exit-fullscreen' ></i>
+          )}
+        </button>
       </div>
     </div>
   )
