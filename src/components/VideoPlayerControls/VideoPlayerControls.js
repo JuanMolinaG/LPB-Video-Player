@@ -13,6 +13,8 @@ const VideoPlayerControls = ({videoElement, progress}) => {
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
+    timeElapsed,
+    duration
   } = useVideoPlayerControls(videoElement);
 
   useEffect(() => {
@@ -41,6 +43,18 @@ const VideoPlayerControls = ({videoElement, progress}) => {
             <i className="bx bx-pause"></i>
           )}
         </button>
+        <button className="mute-btn" onClick={toggleMute}>
+          {!isMuted ? (
+            <i className="bx bxs-volume-full"></i>
+          ) : (
+            <i className="bx bxs-volume-mute"></i>
+          )}
+        </button>
+        <div className="time">
+          <time className="time-elapsed">{timeElapsed}</time>
+          <span> / </span>
+          <time className="duration">{duration}</time>
+        </div>
         <select
           className="velocity"
           value={speed}
@@ -51,13 +65,6 @@ const VideoPlayerControls = ({videoElement, progress}) => {
           <option value="1.5">1.5x</option>
           <option value="2">2x</option>
         </select>
-        <button className="mute-btn" onClick={toggleMute}>
-          {!isMuted ? (
-            <i className="bx bxs-volume-full"></i>
-          ) : (
-            <i className="bx bxs-volume-mute"></i>
-          )}
-        </button>
       </div>
     </div>
   )

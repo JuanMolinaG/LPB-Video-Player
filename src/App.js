@@ -39,7 +39,7 @@ const App = () => {
           onTimeUpdate={(e) => handleOnTimeUpdate(e.target)}
           onLoadedMetadata={() => setVideoIsLoaded(true)}
         />
-        <VideoPlayerControls videoElement={videoElement} progress={progress}/>
+        {videoIsloaded && ( <VideoPlayerControls videoElement={videoElement} progress={progress}/> )}
         {hotspots && (
           hotspots.map((hotspot) => (
             <Hotspot

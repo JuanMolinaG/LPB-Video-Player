@@ -40,13 +40,14 @@
   width: 0;
 }
 .velocity {
+  font-family: 'Montserrat', sans-serif;
   appearance: none;
   background: none;
   color: white;
   outline: none;
   border: none;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   width: 50px;
   cursor: pointer;
 }
@@ -54,4 +55,12 @@
   background-color: none;
   color: white;
   font-size: 20px;
+}
+.time {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100px;
+  font-size: 14px;
 }
