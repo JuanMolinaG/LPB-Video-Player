@@ -26,7 +26,7 @@ const useVideoPlayerControls = (videoElement) => {
   const toggleMute = () => {
     const videoIsMuted = !isMuted;
     videoElement.current.muted = videoIsMuted;
-    setIsMuted(isMuted);
+    setIsMuted(videoIsMuted);
   };
   
   return {
