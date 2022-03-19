@@ -3,17 +3,22 @@ import './App.css';
 import VideoPlayerControls from './components/VideoPlayerControls/VideoPlayerControls'
 import Hotspot from './components/Hotspot/Hotspot'
 
-import useVideoPlayer from './hooks/useVideoPlayer';
+import useProgressBar from './hooks/useProgressBar'
 
 import video from "./assets/video.mp4";
 import hotspotsList from './assets/hotspotsList';
 
 const App = () => {
   const [hotspots, setHotspots] = useState();
-  const [duration, setDuration] = useState(0);
 
   const videoElement = useRef(null);
-  const { playerState, handleOnTimeUpdate } = useVideoPlayer(videoElement);
+
+  const {
+    duration,
+    setDuration,
+    progress,
+    handleOnTimeUpdate,
+  } = useProgressBar();
 
   useEffect(() => {
     if (duration !== 0) {
@@ -27,10 +32,10 @@ const App = () => {
         <video
           src={video}
           ref={videoElement}
-          onTimeUpdate={handleOnTimeUpdate}
+          onTimeUpdate={(e) => handleOnTimeUpdate(e.target)}
           onLoadedMetadata={(e) => setDuration(e.target.duration)}
         />
-        <VideoPlayerControls videoElement={videoElement} progress={playerState.progress}/>
+        <VideoPlayerControls videoElement={videoElement} progress={progress}/>
         {hotspots && (
           hotspots.map((hotspot) => (
             <Hotspot

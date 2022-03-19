@@ -1,23 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-import useVideoPlayer from '../../hooks/useVideoPlayer';
+import useVideoPlayerControls from '../../hooks/useVideoPlayerControls';
 import './VideoPlayerControls.css';
 
 const VideoPlayerControls = ({videoElement, progress}) => {
   const {
-    playerState,
+    isPlaying,
+    setIsPlaying,
+    speed,
+    isMuted,
     togglePlay,
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
-  } = useVideoPlayer(videoElement);
+  } = useVideoPlayerControls(videoElement);
+
+  useEffect(() => {
+    if (progress === 100) setIsPlaying(false);
+  },[progress, setIsPlaying]);
 
   const progressBarElement = useRef(null)
-  useEffect(() => {
-    if (progress > 99) {
-      togglePlay();
-    }
-  }, [progress])
 
   return (
     <div className="controls">
@@ -33,7 +35,7 @@ const VideoPlayerControls = ({videoElement, progress}) => {
       </div>
       <div className="actions">
         <button onClick={togglePlay}>
-          {!playerState.isPlaying ? (
+          {(!isPlaying) ? (
             <i className="bx bx-play"></i>
           ) : (
             <i className="bx bx-pause"></i>
@@ -41,7 +43,7 @@ const VideoPlayerControls = ({videoElement, progress}) => {
         </button>
         <select
           className="velocity"
-          value={playerState.speed}
+          value={speed}
           onChange={(e) => handleVideoSpeed(e)}
         >
           <option value="0.50">0.50x</option>
@@ -50,7 +52,7 @@ const VideoPlayerControls = ({videoElement, progress}) => {
           <option value="2">2x</option>
         </select>
         <button className="mute-btn" onClick={toggleMute}>
-          {!playerState.isMuted ? (
+          {!isMuted ? (
             <i className="bx bxs-volume-full"></i>
           ) : (
             <i className="bx bxs-volume-mute"></i>
