@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   bottom: 55px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   max-width: 33%;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
@@ -17,7 +17,7 @@
 .hotspot-card::before {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -11px;
   width: 0;
   height: 0;
   border-style: solid;
@@ -50,4 +50,12 @@
 }
 .hotspot-card.right .hotspot-card__text {
   border-radius: 0 0 0 10px;
+}
+
+@media screen and (max-width: 640px) {
+  .hotspot-card__text {
+    overflow-y: scroll;
+    max-height: 80px;
+    font-size: 12px;
+  }
 }

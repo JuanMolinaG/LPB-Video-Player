@@ -12,6 +12,7 @@ const App = () => {
   const [hotspots, setHotspots] = useState();
 
   const videoElement = useRef(null);
+  const canvasElement = useRef(null);
 
   const {
     duration,
@@ -29,6 +30,10 @@ const App = () => {
   return (
     <div className="container">
       <div className="video-wrapper">
+        <canvas
+          className="transition-overlay"
+          ref={canvasElement}
+        ></canvas>
         <video
           src={video}
           ref={videoElement}
@@ -43,6 +48,7 @@ const App = () => {
               time={hotspot.time}
               text={hotspot.text}
               videoElement={videoElement}
+              canvasElement={canvasElement}
             />
           ))
         )}
