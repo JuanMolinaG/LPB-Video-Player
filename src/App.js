@@ -9,23 +9,22 @@ import video from "./assets/video.mp4";
 import hotspotsList from './assets/hotspotsList';
 
 const App = () => {
+  const [videoIsloaded, setVideoIsLoaded] = useState(false);
   const [hotspots, setHotspots] = useState();
 
   const videoElement = useRef(null);
   const canvasElement = useRef(null);
 
   const {
-    duration,
-    setDuration,
     progress,
     handleOnTimeUpdate,
   } = useProgressBar();
 
   useEffect(() => {
-    if (duration !== 0) {
+    if (videoIsloaded) {
       setHotspots(hotspotsList);
     }
-  }, [duration]);
+  }, [videoIsloaded]);
 
   return (
     <div className="container">
@@ -38,7 +37,7 @@ const App = () => {
           src={video}
           ref={videoElement}
           onTimeUpdate={(e) => handleOnTimeUpdate(e.target)}
-          onLoadedMetadata={(e) => setDuration(e.target.duration)}
+          onLoadedMetadata={() => setVideoIsLoaded(true)}
         />
         <VideoPlayerControls videoElement={videoElement} progress={progress}/>
         {hotspots && (

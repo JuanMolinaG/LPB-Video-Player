@@ -16,7 +16,7 @@ const VideoPlayerControls = ({videoElement, progress}) => {
   } = useVideoPlayerControls(videoElement);
 
   useEffect(() => {
-    if (progress === 100) setIsPlaying(false);
+    if (progress >= 100) setIsPlaying(false);
   },[progress, setIsPlaying]);
 
   const progressBarElement = useRef(null)

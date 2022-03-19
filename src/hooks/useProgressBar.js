@@ -1,7 +1,6 @@
 import {useState} from 'react'
 
 const useProgressBar = () => {
-  const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
 
   const handleOnTimeUpdate = (video) => {
@@ -19,8 +18,6 @@ const useProgressBar = () => {
   };
 
   return {
-    duration,
-    setDuration,
     progress,
     handleOnTimeUpdate,
   };
