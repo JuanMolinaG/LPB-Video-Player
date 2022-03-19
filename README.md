@@ -4,7 +4,7 @@ Custom Video Player that allows to add hotspots and navigate the video through t
 
 ## Installation and run
 
-Clone the repo and move to the server folder:
+Clone the repo and move to the project folder:
 
 ```bash
 git clone git@bitbucket.org:juangmolina/lpb-testing-task.git
