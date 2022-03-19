@@ -45,6 +45,7 @@ const App = () => {
           hotspots.map((hotspot) => (
             <Hotspot
               key={hotspot.id}
+              id={hotspot.id}
               time={hotspot.time}
               text={hotspot.text}
               videoElement={videoElement}

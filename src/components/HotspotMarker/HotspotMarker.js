@@ -2,7 +2,7 @@ import React from 'react';
 
 import './HotspotMarker.css';
 
-const HotspotMarker = ({time, videoElement, canvasElement}) => {
+const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}) => {
   const leftPosition = Math.round((time / videoElement.current.duration) * 100);
 
   const handleClick = () => {
@@ -20,6 +20,8 @@ const HotspotMarker = ({time, videoElement, canvasElement}) => {
       canvas.removeAttribute("style");
     }, 900);
     video.currentTime = time;
+
+    window.location.hash = `hotspot-${hotspotId}`;
   }
 
   return (
