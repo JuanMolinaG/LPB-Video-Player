@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import './App.css';
+import './VideoPlayer.css';
 import VideoPlayerControls from './components/VideoPlayerControls/VideoPlayerControls'
 import Hotspot from './components/Hotspot/Hotspot'
 
@@ -8,7 +8,7 @@ import useProgressBar from './hooks/useProgressBar'
 import video from "./assets/video.mp4";
 import hotspotsList from './assets/hotspotsList';
 
-const App = () => {
+const VideoPlayer = () => {
   const [videoIsloaded, setVideoIsLoaded] = useState(false);
   const [hotspots, setHotspots] = useState();
 
@@ -57,4 +57,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default VideoPlayer;
