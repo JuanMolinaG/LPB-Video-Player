@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface CardProps {
+interface ICardProps {
   variant: 'left'  | 'right';
 }
 
-export const CardContainer = styled.div<CardProps>`
+export const CardContainer = styled.div<ICardProps>`
   position: absolute;
   display: flex;
   flex-wrap: wrap;
@@ -33,7 +33,7 @@ export const CardThumbnail = styled.img`
   border-radius: 10px 10px 0 0;
 `;
 
-export const CardText = styled.p<CardProps>`
+export const CardText = styled.p<ICardProps>`
   padding: 10px;
   margin: 0;
   background: rgba(255,255,255,0.4);
