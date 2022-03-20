@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
 import HotSpotCard from '../HotspotCard/HotSpotCard';
 import HotspotMarker from '../HotspotMarker/HotspotMarker';
 
-const Hotspot = ({id, time, text, videoElement, canvasElement}) => {
+interface HotspotProps {
+  id: number,
+  time: number,
+  text: string,
+  videoElement: any,
+  canvasElement: any
+}
+
+const Hotspot = ({id, time, text, videoElement, canvasElement}: HotspotProps) => {
   if (time < 0 || time > videoElement.current.duration) return null;
 
   return (

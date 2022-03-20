@@ -2,15 +2,22 @@ import React from 'react';
 
 import * as S from './HotspotMarker.styled';
 
-const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}) => {
-  const leftPosition = Math.round((time / videoElement.current.duration) * 100);
+interface HotspotMarkerProps {
+  hotspotId: number,
+  time: number,
+  videoElement: any,
+  canvasElement: any
+}
+
+const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}: HotspotMarkerProps) => {
+  const leftPosition: number = Math.round((time / videoElement.current.duration) * 100);
 
   const handleClick = () => {
-    const canvas = canvasElement.current;
-    const video = videoElement.current;
+    const canvas: HTMLCanvasElement = canvasElement.current;
+    const video: HTMLVideoElement = videoElement.current;
     canvas.height = video.videoHeight;
     canvas.width = video.videoWidth;
-    const ctx = canvas.getContext('2d');
+    const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
     canvas.style.animationName = 'fade';
     canvas.style.animationTimingFunction = 'ease-in-out';

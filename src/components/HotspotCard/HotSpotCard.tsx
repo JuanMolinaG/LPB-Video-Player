@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './HotspotCard.style';
 
-const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
+interface HotSpotCardProps {
+  time: number,
+  text: string,
+  videoDuration: number,
+  videoSrc: string
+}
+
+const HotSpotCard = ({time, text, videoDuration, videoSrc}: HotSpotCardProps) => {
   const [imgSrc, setImgSrc] = useState('');
 
   const leftPosition = Math.round((time /videoDuration) * 100);
@@ -13,11 +20,11 @@ const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
     video.onloadedmetadata = () => {
       video.currentTime = time;
     };
-    video.onseeked = () => {
-      const canvas = document.createElement('canvas');
+    video.onseeked = (): void => {
+      const canvas: HTMLCanvasElement = document.createElement('canvas');
       canvas.height = video.videoHeight;
       canvas.width = video.videoWidth;
-      const ctx = canvas.getContext('2d');
+      const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       setImgSrc(canvas.toDataURL());
       video.remove();
