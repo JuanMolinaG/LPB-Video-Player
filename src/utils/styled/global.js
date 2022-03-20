@@ -7,4 +7,12 @@ export default createGlobalStyle`
   body {
     font-family: 'Montserrat', sans-serif;
   }
+  @keyframes fade {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 `;

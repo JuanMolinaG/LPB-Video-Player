@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './HotspotMarker.css';
+import * as S from './HotspotMarker.styled';
 
 const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}) => {
   const leftPosition = Math.round((time / videoElement.current.duration) * 100);
@@ -25,11 +25,10 @@ const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}) => {
   }
 
   return (
-    <div
-      className="hotspot-marker"
+    <S.MarkerPoint
       style={{left: leftPosition + '%' }}
       onClick={handleClick}
-    ></div>
+    ></S.MarkerPoint>
   )
 }
 

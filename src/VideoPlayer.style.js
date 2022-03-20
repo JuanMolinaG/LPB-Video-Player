@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import {Controls} from './components/VideoPlayerControls/VideoPlayerControls.styled';
+import {MarkerPoint} from './components/HotspotMarker/HotspotMarker.styled';
 
 export const Container = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ export const VideoWrapper = styled.div`
   overflow: hidden;
   border-radius: 10px;
 
-  &:hover ${Controls} {
+  &:hover ${Controls}, &:hover ${MarkerPoint} {
     opacity: 1;
   }
 `;

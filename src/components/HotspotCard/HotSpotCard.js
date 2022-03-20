@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import './HotspotCard.css';
+import * as S from './HotspotCard.style';
 
 const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
   const [imgSrc, setImgSrc] = useState('');
@@ -26,13 +26,13 @@ const HotSpotCard = ({time, text, videoDuration, videoSrc}) => {
   }, [time, videoSrc]);
 
   return (
-    <div
-      className={leftPosition < 66 ? 'hotspot-card left' : 'hotspot-card right'}
+    <S.CardContainer
+      variant={leftPosition < 66 ? 'left' : 'right'}
       style={leftPosition < 66 ? {left: `calc(${leftPosition}% - 10px)` } : {right: `calc(${100 - leftPosition}% - 10px)` }}
     >
-      <img className="hotspot-card__thumbnail" src={imgSrc} alt="Hotspot thumbnail" />
-      <p className="hotspot-card__text">{text}</p>
-    </div>
+      <S.CardThumbnail src={imgSrc} alt="Hotspot thumbnail" />
+      <S.CardText variant={leftPosition < 66 ? 'left' : 'right'}>{text}</S.CardText>
+    </S.CardContainer>
   )
 }
 
