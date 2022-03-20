@@ -14,6 +14,7 @@ const VideoPlayer = () => {
 
   const videoElement = useRef(null);
   const canvasElement = useRef(null);
+  const videoWrapperEl = useRef(null);
 
   const {
     progress,
@@ -28,7 +29,7 @@ const VideoPlayer = () => {
 
   return (
     <S.Container>
-      <S.VideoWrapper>
+      <S.VideoWrapper ref={videoWrapperEl}>
         <S.TransitionOverlay ref={canvasElement}></S.TransitionOverlay>
         <S.Video
           src={video}
@@ -36,7 +37,13 @@ const VideoPlayer = () => {
           onTimeUpdate={(e) => handleOnTimeUpdate(e.target)}
           onLoadedMetadata={() => setVideoIsLoaded(true)}
         />
-        {videoIsloaded && ( <VideoPlayerControls videoElement={videoElement} progress={progress}/> )}
+        {videoIsloaded && (
+          <VideoPlayerControls
+            videoElement={videoElement}
+            progress={progress}
+            videoWrapperEl={videoWrapperEl}
+          />
+        )}
         {hotspots && (
           hotspots.map((hotspot) => (
             <Hotspot

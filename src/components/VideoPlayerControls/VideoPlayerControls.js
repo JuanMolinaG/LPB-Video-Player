@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import useVideoPlayerControls from '../../hooks/useVideoPlayerControls';
 import * as S from './VideoPlayerControls.styled';
 
-const VideoPlayerControls = ({videoElement, progress}) => {
+const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
   const {
     isPlaying,
     setIsPlaying,
@@ -18,7 +18,7 @@ const VideoPlayerControls = ({videoElement, progress}) => {
     isFullscreen,
     toggleFullscreen,
     togglePiP
-  } = useVideoPlayerControls(videoElement);
+  } = useVideoPlayerControls(videoElement, videoWrapperEl);
 
   useEffect(() => {
     if (progress >= 100) setIsPlaying(false);
