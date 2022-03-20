@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 
 import * as S from './HotspotCard.style';
 
-interface HotSpotCardProps {
+interface IHotSpotCardProps {
   time: number,
   text: string,
   videoDuration: number,
   videoSrc: string
 }
 
-const HotSpotCard = ({time, text, videoDuration, videoSrc}: HotSpotCardProps) => {
+const HotSpotCard = ({time, text, videoDuration, videoSrc}: IHotSpotCardProps) => {
   const [imgSrc, setImgSrc] = useState('');
 
-  const leftPosition = Math.round((time /videoDuration) * 100);
+  const leftPosition: number = Math.round((time /videoDuration) * 100);
 
   useEffect(() => {
-    const video = document.createElement('video');
+    const video: HTMLVideoElement = document.createElement('video');
     video.setAttribute('src', videoSrc);
     video.onloadedmetadata = () => {
       video.currentTime = time;

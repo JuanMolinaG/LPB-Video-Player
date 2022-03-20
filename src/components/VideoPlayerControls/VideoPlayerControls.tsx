@@ -3,13 +3,13 @@ import React, { useEffect, useRef } from 'react';
 import useVideoPlayerControls from '../../hooks/useVideoPlayerControls';
 import * as S from './VideoPlayerControls.styled';
 
-interface VidepPlayerControlsProps {
-  videoElement: any,
+interface IVideoPlayerControlsProps {
+  videoElement: React.RefObject<HTMLVideoElement>,
   progress: number,
-  videoWrapperEl: any
+  videoWrapperEl: React.RefObject<HTMLDivElement>
 }
 
-const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}: VidepPlayerControlsProps) => {
+const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}: IVideoPlayerControlsProps) => {
   const {
     isPlaying,
     setIsPlaying,

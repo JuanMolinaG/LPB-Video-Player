@@ -2,19 +2,19 @@ import React from 'react';
 
 import * as S from './HotspotMarker.styled';
 
-interface HotspotMarkerProps {
+interface IHotspotMarkerProps {
   hotspotId: number,
   time: number,
-  videoElement: any,
-  canvasElement: any
+  videoElement: React.RefObject<HTMLVideoElement>,
+  canvasElement: React.RefObject<HTMLCanvasElement>
 }
 
-const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}: HotspotMarkerProps) => {
-  const leftPosition: number = Math.round((time / videoElement.current.duration) * 100);
+const HotspotMarker = ({hotspotId, time, videoElement, canvasElement}: IHotspotMarkerProps) => {
+  const leftPosition: number = Math.round((time / videoElement.current!.duration) * 100);
 
   const handleClick = () => {
-    const canvas: HTMLCanvasElement = canvasElement.current;
-    const video: HTMLVideoElement = videoElement.current;
+    const canvas: HTMLCanvasElement = canvasElement.current!;
+    const video: HTMLVideoElement = videoElement.current!;
     canvas.height = video.videoHeight;
     canvas.width = video.videoWidth;
     const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!;

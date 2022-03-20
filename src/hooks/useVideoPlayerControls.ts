@@ -5,12 +5,12 @@ interface IVideoWrapper extends HTMLDivElement {
   fullscreenElement?: boolean,
 }
 
-interface Document {
+interface IDocument {
   webkitFullscreenElement?: boolean,
   webkitExitFullscreen?: () => void,
 }
 
-const useVideoPlayerControls = (videoElement: any, videoWrapperEl: any) => {
+const useVideoPlayerControls = (videoElement: React.RefObject<HTMLVideoElement>, videoWrapperEl: React.RefObject<HTMLDivElement>) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
@@ -18,10 +18,10 @@ const useVideoPlayerControls = (videoElement: any, videoWrapperEl: any) => {
   const [duration, setDuration] = useState('00:00');
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const video: HTMLVideoElement = videoElement.current;
+  const video: HTMLVideoElement = videoElement.current!;
 
   useEffect(() => {
-    const handleTimeElapsed = ():void => {
+    const handleTimeElapsed = (): void => {
       let currentMinutes: string | number = Math.floor(video.currentTime / 60);
       let currentSeconds: string | number = Math.floor(video.currentTime - currentMinutes * 60);
       currentMinutes = currentMinutes < 10 ? '0' + currentMinutes : currentMinutes;
@@ -29,7 +29,7 @@ const useVideoPlayerControls = (videoElement: any, videoWrapperEl: any) => {
       setTimeElapsed(`${currentMinutes}:${currentSeconds}`);
     }
   
-    const handleVideoDuration = ():void => {
+    const handleVideoDuration = (): void => {
       let durationMinutes: string | number = Math.floor(video.duration / 60);
       let durationSeconds: string | number = Math.floor(video.duration - durationMinutes * 60);
       durationMinutes = durationMinutes < 10 ? '0' + durationMinutes : durationMinutes;
@@ -42,32 +42,32 @@ const useVideoPlayerControls = (videoElement: any, videoWrapperEl: any) => {
   }, [video.currentTime, video.duration]);
 
 
-  const togglePlay = ():void => {
+  const togglePlay = (): void => {
     !isPlaying
      ? video.play()
      : video.pause();
     setIsPlaying(!isPlaying);
   };
 
-  const handleVideoProgress = (event: React.MouseEvent<HTMLElement>, progressBarElement: any) => {
-    const progressTime: number = (event.nativeEvent.offsetX / progressBarElement.current.offsetWidth) * video.duration;
+  const handleVideoProgress = (event: React.MouseEvent<HTMLElement>, progressBarElement: React.RefObject<HTMLDivElement>): void => {
+    const progressTime: number = (event.nativeEvent.offsetX / progressBarElement.current!.offsetWidth) * video.duration;
     video.currentTime = progressTime;
   };
 
-  const handleVideoSpeed = (event: React.ChangeEvent) => {
+  const handleVideoSpeed = (event: React.ChangeEvent): void => {
     const speed: number = Number((event.target as HTMLSelectElement).value);
     video.playbackRate = speed;
     setSpeed(speed);
   };
 
-  const toggleMute = () => {
+  const toggleMute = (): void => {
     const videoIsMuted: boolean = !isMuted;
     video.muted = videoIsMuted;
     setIsMuted(videoIsMuted);
   };
 
-  const toggleFullscreen = () => {
-    const videoWrapper: IVideoWrapper = videoWrapperEl.current;
+  const toggleFullscreen = (): void => {
+    const videoWrapper: IVideoWrapper = videoWrapperEl.current!;
 
     if (!isFullscreen) {
       if (videoWrapper.webkitRequestFullscreen) {
@@ -79,16 +79,16 @@ const useVideoPlayerControls = (videoElement: any, videoWrapperEl: any) => {
     } else {
       if (document.fullscreenElement) {
         document.exitFullscreen();
-      } else if ((document as Document).webkitFullscreenElement) {
+      } else if ((document as IDocument).webkitFullscreenElement) {
         // Need this to support Safari
-        (document as Document).webkitExitFullscreen?.();
+        (document as IDocument).webkitExitFullscreen?.();
       }
     }
     
     setIsFullscreen(!isFullscreen);
   }
 
-  const togglePiP = async () => {
+  const togglePiP = async (): Promise<void> => {
     try {
       if (video !== document.pictureInPictureElement) {
         await video.requestPictureInPicture();
