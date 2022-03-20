@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-const useVideoPlayerControls = (videoElement) => {
+const useVideoPlayerControls = (videoElement, videoWrapperEl) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [isMuted, setIsMuted] = useState(false);
@@ -57,7 +57,7 @@ const useVideoPlayerControls = (videoElement) => {
   };
 
   const toggleFullscreen = () => {
-    const videoWrapper = document.querySelector('.video-wrapper');
+    const videoWrapper = videoWrapperEl.current;
 
     if (!isFullscreen) {
       if (videoWrapper.webkitRequestFullscreen) {
