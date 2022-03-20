@@ -8,9 +8,15 @@ import * as S from './VideoPlayer.style';
 import video from "./assets/video.mp4";
 import hotspotsList from './assets/hotspotsList';
 
+interface HotspotItem {
+  id: number,
+  time: number,
+  text: string
+}
+
 const VideoPlayer = () => {
   const [videoIsloaded, setVideoIsLoaded] = useState(false);
-  const [hotspots, setHotspots] = useState();
+  const [hotspots, setHotspots] = useState<HotspotItem[]>([]);
 
   const videoElement = useRef<HTMLVideoElement>(null);
   const canvasElement = useRef<HTMLCanvasElement>(null);
