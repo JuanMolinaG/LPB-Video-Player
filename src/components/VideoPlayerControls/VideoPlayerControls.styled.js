@@ -1,4 +1,6 @@
-.controls {
+import styled from 'styled-components';
+
+export const Controls = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -12,11 +14,26 @@
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   opacity: 0;
   transition: all 0.3s ease-in-out;
-}
-.actions {
+`;
+
+export const ProgressBar = styled.div`
   display: flex;
-}
-.actions button, .view button {
+  width: 100%;
+  height: 5px;
+  background: rgba(0,0,0,0.6);
+  cursor: pointer;
+`;
+
+export const ProgressBarFilled = styled.div`
+  background: red;
+  width: 0;
+`;
+
+export const Actions = styled.div`
+  display: flex;
+`;
+
+export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,40 +42,31 @@
   border: none;
   outline: none;
   cursor: pointer;
-}
-.actions button i, .view button i {
-  background-color: none;
+`;
+
+export const Icon = styled.i`
   color: white;
   font-size: 30px;
-}
-.progress-bar {
-  display: flex;
-  width: 100%;
-  height: 5px;
-  background: rgba(0,0,0,0.6);
-  cursor: pointer;
-}
-.progress-bar__filled {
-  background: red;
-  width: 0;
-}
-.actions .mute-btn i {
-  background-color: none;
-  color: white;
+`;
+
+export const IconSmall = styled(Icon)`
   font-size: 20px;
-}
-.time {
+`;
+
+export const Time = styled.div`
   color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100px;
   font-size: 14px;
-}
-.view {
+`;
+
+export const View = styled.div`
   display: flex;
-}
-.velocity {
+`;
+
+export const VelocitySelect = styled.select`
   font-family: 'Montserrat', sans-serif;
   appearance: none;
   background: none;
@@ -69,9 +77,4 @@
   font-size: 14px;
   width: 50px;
   cursor: pointer;
-}
-.view .fullscreen-btn i {
-  background-color: none;
-  color: white;
-  font-size: 20px;
-}
+`;

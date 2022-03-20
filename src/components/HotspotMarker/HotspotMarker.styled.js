@@ -1,4 +1,8 @@
-.hotspot-marker {
+import styled, { keyframes } from 'styled-components';
+
+import {CardContainer} from '../HotspotCard/HotspotCard.style';
+
+export const MarkerPoint = styled.div`
   box-sizing: border-box;
   width: 13px;
   height: 13px;
@@ -11,24 +15,17 @@
   transform: translateX(-50%);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-}
-.hotspot-marker:hover ~ .hotspot-card {
-  opacity: 1;
-}
-@keyframes fade {
-	0% {
-		opacity: 1;
-	}
-	25% {
-		opacity: 0.75;
-	}
-  50% {
-		opacity: 0.5;
+
+  &:hover ~ ${CardContainer} {
+    opacity: 1;
   }
-	75% {
-		opacity: 0.25;
+`;
+
+export const fade = keyframes`
+  0% {
+		opacity: 1;
 	}
 	100% {
 		opacity: 0;
 	}
-}
+`;

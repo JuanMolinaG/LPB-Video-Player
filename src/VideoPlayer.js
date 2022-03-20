@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import './VideoPlayer.css';
-import VideoPlayerControls from './components/VideoPlayerControls/VideoPlayerControls'
-import Hotspot from './components/Hotspot/Hotspot'
+import VideoPlayerControls from './components/VideoPlayerControls/VideoPlayerControls';
+import Hotspot from './components/Hotspot/Hotspot';
 
-import useProgressBar from './hooks/useProgressBar'
+import useProgressBar from './hooks/useProgressBar';
+import * as S from './VideoPlayer.style';
 
 import video from "./assets/video.mp4";
 import hotspotsList from './assets/hotspotsList';
@@ -28,13 +28,10 @@ const VideoPlayer = () => {
   }, [videoIsloaded]);
 
   return (
-    <div className="container">
-      <div className="video-wrapper" ref={videoWrapperEl}>
-        <canvas
-          className="transition-overlay"
-          ref={canvasElement}
-        ></canvas>
-        <video
+    <S.Container>
+      <S.VideoWrapper ref={videoWrapperEl}>
+        <S.TransitionOverlay ref={canvasElement}></S.TransitionOverlay>
+        <S.Video
           src={video}
           ref={videoElement}
           onTimeUpdate={(e) => handleOnTimeUpdate(e.target)}
@@ -59,8 +56,8 @@ const VideoPlayer = () => {
             />
           ))
         )}
-      </div>
-    </div>
+      </S.VideoWrapper>
+    </S.Container>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import useVideoPlayerControls from '../../hooks/useVideoPlayerControls';
-import './VideoPlayerControls.css';
+import * as S from './VideoPlayerControls.styled';
 
 const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
   const {
@@ -27,40 +27,36 @@ const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
   const progressBarElement = useRef(null)
 
   return (
-    <div className="controls">
-      <div
-        className="progress-bar"
+    <S.Controls>
+      <S.ProgressBar
         onClick={(e) => handleVideoProgress(e, progressBarElement)}
         ref={progressBarElement}
       >
-        <div
-          className="progress-bar__filled"
-          style={{width: progress + '%'}}
-        ></div>
-      </div>
-      <div className="actions">
-        <button onClick={togglePlay}>
+        <S.ProgressBarFilled style={{width: progress + '%'}}></S.ProgressBarFilled>
+      </S.ProgressBar>
+      <S.Actions>
+        <S.Button onClick={togglePlay}>
           {(!isPlaying) ? (
-            <i className="bx bx-play"></i>
+            <S.Icon className="bx bx-play"></S.Icon>
           ) : (
-            <i className="bx bx-pause"></i>
+            <S.Icon className="bx bx-pause"></S.Icon>
           )}
-        </button>
-        <button className="mute-btn" onClick={toggleMute}>
+        </S.Button>
+        <S.Button onClick={toggleMute}>
           {!isMuted ? (
-            <i className="bx bx-volume-full"></i>
+            <S.IconSmall className="bx bx-volume-full"></S.IconSmall>
           ) : (
-            <i className="bx bx-volume-mute"></i>
+            <S.IconSmall className="bx bx-volume-mute"></S.IconSmall>
           )}
-        </button>
-        <div className="time">
+        </S.Button>
+        <S.Time>
           <time className="time-elapsed">{timeElapsed}</time>
           <span> / </span>
           <time className="duration">{duration}</time>
-        </div>
-      </div>
-      <div className="view">
-        <select
+        </S.Time>
+      </S.Actions>
+      <S.View>
+        <S.VelocitySelect
           className="velocity"
           value={speed}
           onChange={(e) => handleVideoSpeed(e)}
@@ -69,27 +65,25 @@ const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
           <option value="1">1x</option>
           <option value="1.5">1.5x</option>
           <option value="2">2x</option>
-        </select>
+        </S.VelocitySelect>
         {('pictureInPictureEnabled' in document) && (
-          <button
-            className="fullscreen-btn"
+          <S.Button
             onClick={togglePiP}
           >
-            <i className='bx bx-windows bx-flip-horizontal' ></i>
-          </button>
+            <S.IconSmall className='bx bx-windows bx-flip-horizontal' ></S.IconSmall>
+          </S.Button>
         )}
-        <button
-          className="fullscreen-btn"
+        <S.Button
           onClick={toggleFullscreen}
         >
           {(!isFullscreen) ? (
-            <i className='bx bx-fullscreen'></i>
+            <S.IconSmall className='bx bx-fullscreen'></S.IconSmall>
           ) : (
-            <i className='bx bx-exit-fullscreen' ></i>
+            <S.IconSmall className='bx bx-exit-fullscreen' ></S.IconSmall>
           )}
-        </button>
-      </div>
-    </div>
+        </S.Button>
+      </S.View>
+    </S.Controls>
   )
 }
 
