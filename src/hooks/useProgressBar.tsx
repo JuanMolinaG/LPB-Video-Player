@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState} from 'react';
 
 const useProgressBar = () => {
   const [progress, setProgress] = useState(0);
