@@ -6,17 +6,12 @@ import useProgressBar from './hooks/useProgressBar';
 import * as S from './VideoPlayer.style';
 
 import video from "./assets/video.mp4";
-import hotspotsList from './assets/hotspotsList';
+import hotspotsList, {IHotspotItem} from './assets/hotspotsList';
 
-interface HotspotItem {
-  id: number,
-  time: number,
-  text: string
-}
 
 const VideoPlayer = () => {
-  const [videoIsloaded, setVideoIsLoaded] = useState(false);
-  const [hotspots, setHotspots] = useState<HotspotItem[]>([]);
+  const [videoIsLoaded, setVideoIsLoaded] = useState(false);
+  const [hotspots, setHotspots] = useState<IHotspotItem[]>([]);
 
   const videoElement = useRef<HTMLVideoElement>(null);
   const canvasElement = useRef<HTMLCanvasElement>(null);
@@ -28,10 +23,10 @@ const VideoPlayer = () => {
   } = useProgressBar();
 
   useEffect(() => {
-    if (videoIsloaded) {
+    if (videoIsLoaded) {
       setHotspots(hotspotsList);
     }
-  }, [videoIsloaded]);
+  }, [videoIsLoaded]);
 
   return (
     <S.Container>
@@ -40,10 +35,10 @@ const VideoPlayer = () => {
         <S.Video
           src={video}
           ref={videoElement}
-          onTimeUpdate={(e) => handleOnTimeUpdate(e.target)}
+          onTimeUpdate={(e) => handleOnTimeUpdate((e.target as HTMLVideoElement))}
           onLoadedMetadata={() => setVideoIsLoaded(true)}
         />
-        {videoIsloaded && (
+        {videoIsLoaded && (
           <VideoPlayerControls
             videoElement={videoElement}
             progress={progress}

@@ -1,4 +1,10 @@
-const hotspotsList = [
+export interface IHotspotItem {
+  id: number,
+  time: number,
+  text: string
+}
+
+const hotspotsList: Array<IHotspotItem> = [
   {
     id: 0, // This will not be rendered
     time: -2,
