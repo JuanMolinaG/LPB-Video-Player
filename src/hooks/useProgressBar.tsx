@@ -3,7 +3,7 @@ import {useState} from 'react';
 const useProgressBar = () => {
   const [progress, setProgress] = useState(0);
 
-  const handleOnTimeUpdate = (video) => {
+  const handleOnTimeUpdate = (video: any) => {
     const updateTime = () => {
       const progress = (video.currentTime / video.duration) * 100;
 

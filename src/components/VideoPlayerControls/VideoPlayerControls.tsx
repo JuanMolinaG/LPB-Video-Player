@@ -1,9 +1,15 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import useVideoPlayerControls from '../../hooks/useVideoPlayerControls';
 import * as S from './VideoPlayerControls.styled';
 
-const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
+interface VidepPlayerControlsProps {
+  videoElement: any,
+  progress: number,
+  videoWrapperEl: any
+}
+
+const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}: VidepPlayerControlsProps) => {
   const {
     isPlaying,
     setIsPlaying,
@@ -24,7 +30,7 @@ const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
     if (progress >= 100) setIsPlaying(false);
   },[progress, setIsPlaying]);
 
-  const progressBarElement = useRef(null)
+  const progressBarElement = useRef<HTMLDivElement>(null);
 
   return (
     <S.Controls>
@@ -59,7 +65,7 @@ const VideoPlayerControls = ({videoElement, progress, videoWrapperEl}) => {
         <S.VelocitySelect
           className="velocity"
           value={speed}
-          onChange={(e) => handleVideoSpeed(e)}
+          onChange={(e: React.ChangeEvent) => handleVideoSpeed(e)}
         >
           <option value="0.50">0.50x</option>
           <option value="1">1x</option>

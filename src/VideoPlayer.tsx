@@ -12,9 +12,9 @@ const VideoPlayer = () => {
   const [videoIsloaded, setVideoIsLoaded] = useState(false);
   const [hotspots, setHotspots] = useState();
 
-  const videoElement = useRef(null);
-  const canvasElement = useRef(null);
-  const videoWrapperEl = useRef(null);
+  const videoElement = useRef<HTMLVideoElement>(null);
+  const canvasElement = useRef<HTMLCanvasElement>(null);
+  const videoWrapperEl = useRef<HTMLDivElement>(null);
 
   const {
     progress,
